@@ -9,6 +9,7 @@ group :test do
   gem "puppet-syntax"
   gem "puppetlabs_spec_helper"
   gem "toml"
+  gem "safe_yaml"
 end
 
 group :development do
