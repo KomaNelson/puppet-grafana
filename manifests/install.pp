@@ -18,7 +18,6 @@ class grafana::install {
       default           => $real_archive_source,
     }
   }
-  
   case $::grafana::install_method {
     'docker': {
       docker::image { 'grafana/grafana':
