@@ -5,18 +5,6 @@
 #
 class grafana::service {
   case $::grafana::install_method {
-    'docker': {
-      $container = {
-        'grafana' => $::grafana::container_params
-      }
-
-      $defaults = {
-        image => "${::grafana::params::docker_image}:${::grafana::version}",
-        ports => $::grafana::params::docker_ports
-      }
-
-      create_resources(docker::run, $container, $defaults)
-    }
     'package','repo': {
       service { $::grafana::service_name:
         ensure    => running,
