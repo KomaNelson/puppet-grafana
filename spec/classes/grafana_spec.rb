@@ -84,11 +84,6 @@ describe 'grafana' do
       describe 'install apt repo dependencies first' do
         it { should contain_class('apt') }
         it { should contain_apt__source('grafana').with(:release => 'wheezy', :repos => 'main', :location => 'https://packagecloud.io/grafana/stable/debian') }
-        it { should contain_apt__source('grafana').that_comes_before('Package[grafana]') }
-      end
-
-      describe 'install dependencies first' do
-        it { should contain_package('libfontconfig1').with_ensure('present').that_comes_before('Package[grafana]') }
       end
 
       describe 'install the package' do
@@ -103,11 +98,6 @@ describe 'grafana' do
 
       describe 'yum repo dependencies first' do
         it { should contain_yumrepo('grafana').with(:baseurl => 'https://packagecloud.io/grafana/stable/el/6/$basearch', :gpgkey => 'https://packagecloud.io/gpg.key https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana', :enabled => 1) }
-        it { should contain_yumrepo('grafana').that_comes_before('Package[grafana]') }
-      end
-
-      describe 'install dependencies first' do
-        it { should contain_package('fontconfig').with_ensure('present').that_comes_before('Package[grafana]') }
       end
 
       describe 'install the package' do
